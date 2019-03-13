@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 //posizioni dei giocatori
 int row1;
 int column1;
