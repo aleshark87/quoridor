@@ -1,6 +1,4 @@
 #include "libreria.h"
-#include <stdlib.h>
-#include <stdio.h>
 #define LENGTH 17
 
 int main(){
