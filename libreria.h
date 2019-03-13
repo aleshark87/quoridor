@@ -67,6 +67,8 @@ int mossa_pedina(char **campo,int player,int direzione){
 	//direzione 1 sopra
 	//direzione 2 sinisra
 	//direzione 3 sotto
+	/*ovviamente le direzioni sono scambiate per sopra e sotto,
+	queste valgono per il giocatore 0(sotto)*/
 	int row;
 	int column;
 	/*acquisisco la posizione del giocatore giusto
