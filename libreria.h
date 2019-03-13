@@ -71,16 +71,20 @@ int mossa_pedina(char **campo,int player,int direzione){
 		column=column2;
 	}
 	if(direzione==0){
+		//controlla se la barriera è "libera"
 		if(campo[row][column+1]==2){
+			//c'è da prevedere il salto
 			if(campo[row][column+2]==1){
 				return 2;//mossa bloccata da giocatore 2
 			}
 			//la posizione precedentemente occupata, torna a 0
 			campo[row][column]=0;
-			campo[row][column+2]=1;
+			column=column+2;
+			campo[row][column]=1;
 		}
 	}
 	//in fondo, restituisco la posizione alle variabili globali
+	
 	if(player){
 		row1=row;
 		column1=column;
