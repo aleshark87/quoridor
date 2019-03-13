@@ -7,6 +7,13 @@ int row2;
 int column2;
 int inizializza_campo(char **campo){
 	int i,k;
+	campo=(char **)malloc(sizeof(char*)*LENGTH);
+	if(campo==NULL)
+		return 1;
+	for(int i=0;i<17;++i)
+	{
+		*(campo+i)=(char *)malloc(sizeof(char )*LENGTH);
+	}
 	for(i=0;i<17;i++){
                 if((i+1)%2==1){
                         for(k=1;k<17;k=k+2){
