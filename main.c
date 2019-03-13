@@ -1,22 +1,19 @@
 #include "libreria.h"
-#define LENGTH 17
 
 int main(){
-	char**field;
-	char**positions;
-	field=(char **)malloc(sizeof(char*)*LENGTH);
-	//malloc control
-	if(field==NULL)
+	char**campo1;
+	campo1=(char **)malloc(sizeof(char*)*LENGTH);
+	if(campo1==NULL)
 		return 1;
 	for(int i=0;i<17;++i)
 	{
-		*(field+i)=(char *)malloc(sizeof(char )*LENGTH);
+		*(campo1+i)=(char *)malloc(sizeof(char )*LENGTH);
 	}
-	inizializza_campo(field);
-	stampa_campo(field);
-	move_pedina(field,1,0);
+	inizializza_campo(campo1);
+	stampa_campo(campo1);
+	mossa_pedina(campo1,1,0);
 	//giocatore 1 è sopra, giocatore 0 sotto
-	print_field(field);
+	stampa_campo(campo1);
 	return 0;
 }
 
