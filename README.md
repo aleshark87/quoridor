@@ -1,6 +1,6 @@
-Rules:
+## Rules
 
-Quoridor is played on a game board of 81 square spaces (9x9). Each player is represented by a pawn which begins at the center space
+>Quoridor is played on a game board of 81 square spaces (9x9). Each player is represented by a pawn which begins at the center space
 of one edge of the board (in a two-player game, the pawns begin opposite each other). The objective is to be the first player to
 move their pawn to any space on the opposite side of the gameboard from which it begins.
 The distinguishing characteristic of Quoridor is its twenty walls. Walls are flat two-space-wide pieces which can be placed 
