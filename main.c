@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lib.h"
+
 int main()
 {
-    int winner=0;
+    int winner;
     char **matr;
     player p1,p2;
 
-    /*	matrix allocation	*/
+    //matrix allocation
     matr=(char**)malloc(N*sizeof(char*));
     if(matr==NULL){
         return 1;
@@ -21,16 +22,24 @@ int main()
     print_matrix(matr,&p1,&p2);
 
     while(1){
-        /*	player1 firts move	*/
-        if((winner=player1_move(matr,&p1,&p2))!=0){
+        //player1 firts move
+        if(player1_move(matr,&p1,&p2)==1){
             system("clear");
-            printf("\nAND THE WINNER IS... PLAYER %d!!\n",winner);
+            printf("\nAND THE WINNER IS... PLAYER 1!!\n");
             return 0;
         }
-        system("clear");
+        clear();
         print_matrix(matr,&p1,&p2);
 
-        /*	player2 move	*/
+        //player2 move
+        if(player2_move(matr,&p1,&p2)==2){
+            system("clear");
+            printf("\nAND THE WINNER IS... PLAYER 2!!\n");
+            return 0;
+        }
+        clear();
+        print_matrix(matr,&p1,&p2);
+        //player2 move
     }
 
     return 0;
