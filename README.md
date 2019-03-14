@@ -24,6 +24,7 @@ a wall may not be placed which cuts off the only remaining path of any pawn to t
 
 ### Todolist(wip)
 *	face_to_face1(), face_to_face2() : case when the two opponents are close togheter and one wants to jump over the other.
-* barriers placing, barriers checking
-*	check for "illegal" barriers
-*
+* new variable in the struct: barriers (number of avaiable barriers)
+* barriers_placing()
+*	barrier_already_placed()
+* path_checking() : check if the player has at least one path to go.
