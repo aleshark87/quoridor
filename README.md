@@ -13,3 +13,11 @@ either space that is immediately adjacent (left or right) to the first pawn. Mul
 jumped, including when moving laterally due to a pawn or wall being behind a jumped pawn.
 Walls can be placed directly between two spaces, in any groove not already occupied by a wall. However, 
 a wall may not be placed which cuts off the only remaining path of any pawn to the side of the board it must reach. 
+
+### Compile
+
+`gcc main.c lib.c -o quoridor`
+
+### Start the game
+
+`./quoridor`
