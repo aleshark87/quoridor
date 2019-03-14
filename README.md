@@ -23,8 +23,8 @@ a wall may not be placed which cuts off the only remaining path of any pawn to t
 `./quoridor`
 
 ### Todolist(wip)
-- improve player 1 move (is the same of player two but upside down)
-jump, barrier check, down move
--player 2 move 
--placing barriers
--check for "illegal" barriers
+*	 improve player 1 move (is the same of player two but upside down)
+jump, barrier check
+*	player 2 move 
+*	placing barriers
+*	check for "illegal" barriers
