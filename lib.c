@@ -1,11 +1,6 @@
 #include "lib.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 int matrix_initialization(char **m){
-    /*	The function initializes the playing field, assigns
-	 *	to zero the playable blocks, to 2 the blocks for the barriers
-	 */
     int i,k;
     for(i=0;i<N;i++){
         if((i+1)%2==1){
@@ -27,23 +22,20 @@ void print_matrix(char **m,player *plr1,player *plr2){
     int i,k;
     for(i=0;i<N;i++){
         for(k=0;k<N;k++){
-            /*	a "+" is printed in the player's position	*/
             if((plr1->x==k&&plr1->y==i)||(plr2->x==k&&plr2->y==i)){
                 printf("+ ");
-            }
-            else{
-                /*	IF the barriers are empty a space is printed
-				 *	ELSE a dot is printed	*/
-                if(m[i][k]=='2')
-                    printf("  "); 
-                else 
+            }else{
+                if(m[i][k]=='2'){
+                    printf("  ");
+                }else{
                     printf(". ");
+                }
+                //printf("%c ",m[i][k]);
             }
         }
         printf("\n");
     }
-    /*	player choice	*/
-    printf("\nMovements: q=left,w=up,e=right\n\n");
+    printf("\nMovements: q=left,e=right,w=up,s=down\n\n");
 }
 
 void start(char **m,player *plr1,player *plr2){
@@ -72,10 +64,10 @@ int player1_move(char **m,player *plr1, player *plr2){
     int winner=0;
     //move: q=left,w=up,e=right
     printf("\nPlayer 1. It's your turn. Enter the move: ");
-    scanf("%s",&move);
-    fflush(stdin);
+    scanf("%c",&move);
+    fflush();
 
-    move=border_boundaries(m,plr1,plr2,move);
+    move=border_boundaries1(m,plr1,plr2,move);
 
     switch(move){
         case 'q':
@@ -88,50 +80,111 @@ int player1_move(char **m,player *plr1, player *plr2){
         case 'e':
             plr1->x=(plr1->x)+2;
             break;
+        case 's':
+            plr1->y=(plr1->y)+2;
+            break;
     }
     return winner;
 }
-char border_boundaries(char **m,player *plr1, player *plr2,char move){
-
-    while(move!='q'&&move!='w'&&move!='e'){
-        printf("\nPlease,enter a valid movement\n");
+char border_boundaries1(char **m,player *plr1, player *plr2,char move){
+    char tmp;
+    while(move!='q'&&move!='w'&&move!='e'&&move!='s'){
+        printf("\nPlease,enter a valid movement: ");
         scanf("%c",&move);
-        fflush(stdin);
+        fflush();
     }
-        //check of possible movements
+    //check of possible movements
     if(plr1->x==N-1){
         while(move=='e'){
-            printf("\nPlease,enter a valid movement\n");
+            printf("\nPlease,enter a valid movement:");
             scanf("%c",&move);
-            fflush(stdin);
+            fflush();
         }
     }
     if(plr1->x==0){
         while(move=='q'){
-            printf("\nPlease,enter a valid movement\n");
+            printf("\nPlease,enter a valid movement: ");
             scanf("%c",&move);
-            fflush(stdin);
+            fflush();
         }
     }
-    if(plr1->y==0){
-        while(move=='w'){
-            printf("\nPlease,enter a valid movement\n");
+    if(plr1->y==N-1){
+        while(move=='s'){
+            printf("\nPlease,enter a valid movement: ");
             scanf("%c",&move);
+            fflush();
         }
     }
-    if(plr1->x==0&&plr1->y==0){
-         while(move=='q'||move=='w'){
-            printf("\nPlease,enter a valid movement\n");
-            scanf("%c",&move);
-            fflush(stdin);
-        }
-    }
-    if(plr1->x==N-1&&plr1->y==0){
-         while(move=='q'||move=='w'){
-            printf("\nPlease,enter a valid movement\n");
-            scanf("%c",&move);
-            fflush(stdin);
-        }
-    }
+    /*if(tmp=face_to_face1(plr1,plr2,move)!=NULL){
+        move=tmp;
+    }*/
     return move;
 }
+int player2_move(char **m,player *plr1, player *plr2){
+    char move;
+    int winner=0;
+    //move: q=left,w=up,e=right
+    printf("\nPlayer 2. It's your turn. Enter the move: ");
+    scanf("%c",&move);
+    fflush();
+
+    move=border_boundaries2(m,plr1,plr2,move);
+
+    switch(move){
+        case 'q':
+            plr2->x=(plr2->x)-2;
+            break;
+        case 'w':
+            plr2->y=(plr2->y)+2;
+            winner=finish_line(plr1,plr2);
+            break;
+        case 'e':
+            plr2->x=(plr2->x)+2;
+            break;
+        case 's':
+            plr2->y=(plr2->y)-2;
+            break;
+    }
+    return winner;
+}
+char border_boundaries2(char **m,player *plr1, player *plr2,char move){
+    char tmp;
+    while(move!='q'&&move!='w'&&move!='e'&&move!='s'){
+        printf("\nPlease,enter a valid movement: ");
+        scanf("%c",&move);
+        fflush();
+    }
+    //check of possible movements
+    if(plr2->x==N-1){
+        while(move=='e'){
+            printf("\nPlease,enter a valid movement:");
+            scanf("%c",&move);
+            fflush();
+        }
+    }
+    if(plr2->x==0){
+        while(move=='q'){
+            printf("\nPlease,enter a valid movement: ");
+            scanf("%c",&move);
+            fflush();
+        }
+    }
+    if(plr2->y==0){
+        while(move=='s'){
+            printf("\nPlease,enter a valid movement: ");
+            scanf("%c",&move);
+            fflush();
+        }
+    }
+    /*if(tmp=face_to_face2(plr1,plr2,move)!=NULL){
+        move=tmp;
+    }*/
+    return move;
+}
+/*
+char face_to_face1(player *plr1, player *plr2,char move){
+}
+char face_to_face2(player *plr1, player *plr2,char move){
+}
+*/
+
