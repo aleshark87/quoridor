@@ -4,7 +4,7 @@
 #define N 17
 int main()
 {
-    int winner;
+    int winner=0;
     char **matr;
     player p1,p2;
 
@@ -23,7 +23,7 @@ int main()
 
     while(1){
         //player1 firts move
-        if(winner=player1_move(matr,&p1,&p2)!=0){
+        if((winner=player1_move(matr,&p1,&p2))!=0){
             system("clear");
             printf("\nAND THE WINNER IS... PLAYER %d!!\n",winner);
             return 0;
