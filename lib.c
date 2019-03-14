@@ -1,7 +1,7 @@
 #include "lib.h"
 #include <stdlib.h>
 #include <stdio.h>
-viva windows
+
 int matrix_initialization(char **m){
     /*	The function initializes the playing field, assigns
 	 *	to zero the playable blocks, to 2 the blocks for the barriers
