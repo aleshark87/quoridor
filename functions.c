@@ -1,6 +1,8 @@
 #include "functions.h"
 #define N 17
 int matrix_initialization(char **m){
+    /*The function initializes the playing field, assigns
+    to zero the playable blocks, to 2 the blocks for the barriers*/
     int i,k;
     for(i=0;i<N;i++){
         if((i+1)%2==1){
@@ -22,19 +24,24 @@ void print_matrix(char **m,player *plr1,player *plr2){
     int i,k;
     for(i=0;i<N;i++){
         for(k=0;k<N;k++){
+            /*a "+" is printed in the player's position*/
             if((plr1->x==k&&plr1->y==i)||(plr2->x==k&&plr2->y==i)){
                 printf("+ ");
-            }else{
+            }
+            else{
+                /*a space is printed if the barriers are empty*/
                 if(m[i][k]=='2'){
                     printf("  ");
-                }else{
+                }
+                /*a dot is printed if the barrier is present*/
+                else{
                     printf(". ");
                 }
-                //printf("%c ",m[i][k]);
             }
         }
         printf("\n");
     }
+    /*player choice*/
     printf("\nMovements: q=left,w=up,e=right\n\n");
 }
 
