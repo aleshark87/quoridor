@@ -21,3 +21,7 @@ a wall may not be placed which cuts off the only remaining path of any pawn to t
 ### Start the game
 
 `./quoridor`
+
+## Todolist(wip)
+- improve player 1 move (is the same of player two but upside down)
+
