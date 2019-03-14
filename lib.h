@@ -9,6 +9,7 @@
 #else
 #define clear() (system("clear"))
 #endif
+
 struct player{
     int x;
     int y;
@@ -25,6 +26,3 @@ char face_to_face1(player *plr1, player *plr2,char move);
 char face_to_face2(player *plr1, player *plr2,char move);
 
 #endif // LIB_H_INCLUDED
-
-
-
