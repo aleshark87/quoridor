@@ -2,6 +2,7 @@
 #define LIB_H_INCLUDED
 #include <stdio.h>
 #include <stdlib.h>
+#define N 17
 #define fflush() while(getchar()!='\n')
 #ifdef WIN32
 #define clear() (system("cls"))
@@ -24,5 +25,6 @@ char face_to_face1(player *plr1, player *plr2,char move);
 char face_to_face2(player *plr1, player *plr2,char move);
 
 #endif // LIB_H_INCLUDED
+
 
 
