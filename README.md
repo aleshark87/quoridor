@@ -16,7 +16,7 @@ a wall may not be placed which cuts off the only remaining path of any pawn to t
 
 ### Compile
 
-`gcc main.c lib.c -o quoridor`
+`./compile.sh`
 
 ### Start the game
 
