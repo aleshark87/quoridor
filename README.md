@@ -23,8 +23,8 @@ a wall may not be placed which cuts off the only remaining path of any pawn to t
 `./quoridor`
 
 ### Todolist(wip)
-*	 improve player 1 move (is the same of player two but upside down)
-jump, barrier check
-*	player 2 move 
-*	placing barriers
-*	check for "illegal" barriers
+*	face_to_face1(), face_to_face2() : case when the two opponents are close togheter and one wants to jump over the other.
+* new variable in the struct: barriers (number of avaiable barriers)
+* barriers_placing()
+*	barrier_already_placed()
+* path_checking() : check if the player has at least one path to go.
