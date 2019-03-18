@@ -87,6 +87,7 @@ int player1_move(char **m,player *plr1, player *plr2){
     return winner;
 }
 char border_boundaries1(char **m,player *plr1, player *plr2,char move){
+	/*	check that the entered move is possible	*/
     char tmp;
     while(move!='q'&&move!='w'&&move!='e'&&move!='s'){
         printf("\nPlease,enter a valid movement: ");
@@ -115,9 +116,6 @@ char border_boundaries1(char **m,player *plr1, player *plr2,char move){
             fflush();
         }
     }
-    /*if(tmp=face_to_face1(plr1,plr2,move)!=NULL){
-        move=tmp;
-    }*/
     return move;
 }
 int player2_move(char **m,player *plr1, player *plr2){
@@ -176,15 +174,7 @@ char border_boundaries2(char **m,player *plr1, player *plr2,char move){
             fflush();
         }
     }
-    /*if(tmp=face_to_face2(plr1,plr2,move)!=NULL){
-        move=tmp;
-    }*/
+  
     return move;
 }
-/*
-char face_to_face1(player *plr1, player *plr2,char move){
-}
-char face_to_face2(player *plr1, player *plr2,char move){
-}
-*/
 
