@@ -2,11 +2,12 @@
 
 int main()
 {
+    /*	variable allocation	*/
     int winner;
     char **matr;
     player p1,p2;
 
-    //matrix allocation
+    /*	matrix allocation	*/
     matr=(char**)malloc(N*sizeof(char*));
     if(matr==NULL){
         return 1;
@@ -20,7 +21,7 @@ int main()
     print_matrix(matr,&p1,&p2);
 
     while(1){
-        //player1 firts move
+        /*	player1 firts move	*/
         if(player1_move(matr,&p1,&p2)==1){
             system("clear");
             printf("\nAND THE WINNER IS... PLAYER 1!!\n");
@@ -37,7 +38,6 @@ int main()
         }
         clear();
         print_matrix(matr,&p1,&p2);
-        //player2 move
     }
 
     return 0;
