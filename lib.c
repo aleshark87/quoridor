@@ -347,6 +347,7 @@ bool border_boundaries2(char **m,player *plr1, player *plr2,int move){
                     if(plr2->x!=N-3){
                         return false;
                     }
+		    return true;
             }
         }
     // Else, the player entered a normal move
