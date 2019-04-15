@@ -1,5 +1,24 @@
 #include "lib.h"
-
+int string_control(char* string1)
+//this function controls if the word inserted is "vertical"
+{
+	if (strcmp(string1,"vertical"))
+	{
+		return 1;//vertical
+	}
+	else return 0;//horizontal
+}
+int wall_placing(char **m)
+{
+	printf("Is it a vertical or an horizontal wall?\n");
+	char answer[20];
+	scanf("%s",answer);
+	if(string_control(answer)){
+		//place a horizontal wall
+		//controls if he can
+		
+	}
+}
 int matrix_initialization(char **m){
     int i,k;
     for(i=0;i<N;i++){
@@ -70,7 +89,18 @@ int player1_move(char **m,player *plr1, player *plr2){
     printf("\nPlayer 1. It's your turn. Enter the move: ");
     scanf("%d",&move);
     fflush();
-
+    //wall placing 5
+    if(move==5)
+    {
+		wall_placing(m);
+		return winner;
+	}
+	/* movements plr1
+	 * 2 up
+	 * 3 down
+	 * 4 right
+	 * 1 left
+	 */
 	//border boundaries player_one
     while(border_boundaries1(m,plr1,plr2,move)==false){
         printf("\nInvalid movement, reinsert: ");
