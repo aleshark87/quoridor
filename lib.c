@@ -52,6 +52,7 @@ int wall_placing1(char **m,player *p1,player *p2,barrier *b1, barrier *b2){
 	}
 
     b1->last++;
+    //Starting position
     if(answer=='v'){
         b1->x1[b1->last]=1;
         b1->y1[b1->last]=0;
@@ -86,7 +87,7 @@ int wall_placing1(char **m,player *p1,player *p2,barrier *b1, barrier *b2){
             if (dir==0){
                 printf("\nInvalid direction, please reinsert:\n");
             }
-
+            clear();
             print_matrix(m,p1,p2,b1,b2);
             //If p1 press enter the while will exit because getch() will return -1
         }
@@ -240,28 +241,30 @@ void print_matrix(char **m,player *p1,player *p2, barrier *b1, barrier *b2){
 
             if(p1->x==k&&p1->y==i){
                 printf("1 ");
+                continue;
 
             }
             if(p2->x==k&&p2->y==i){
                 printf("2 ");
-
+                continue;
             }
             //Work in progress
-            for(j=0;j<b1->last;j++){
+            for(j=0;j<=b1->last;j++){
                 if(i==b1->y1[j]&&k==b1->x1[j]||i==b1->y2[j]&&k==b1->x2[j]){
-                    printf("/ ");
-                } else if(i==b2->y1[j]&&k==b2->x1[j]||i==b2->y2[j]&&k==b2->x2[j]){
-                    printf("/ ");
+                    printf("/");
+                }
+            }
+            for(j=0;j<=b2->last;j++){
+                if(i==b2->y1[j]&&k==b2->x1[j]||i==b2->y2[j]&&k==b2->x2[j]){
+                    printf("/");
                 }
             }
             if(m[i][k]=='2'){
                 printf("  ");
 
-            }else{
+            }else if(m[i][k]=='0'){
                 printf(". ");
-            } /*else if(m[i][k]=='3'){
-                printf("/ ");
-            }*/
+            }
 
 
                 //printf("%c ",m[i][k]);
