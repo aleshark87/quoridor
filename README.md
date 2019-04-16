@@ -23,6 +23,6 @@ a wall may not be placed which cuts off the only remaining path of any pawn to t
 `./quoridor`
 
 ### Todolist(wip)
-* barriers_placing()
-*	barrier_already_placed()
-* path_checking() : check if the player has at least one path to go.
+* Barrier direction array attribute addition and managment
+* Players control movement with barriers
+* Path not hampered with barriers
