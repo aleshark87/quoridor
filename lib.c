@@ -1,6 +1,18 @@
 #include "lib.h"
 
 // This function is similar to getchar() but it execute a desired block of instructions for each characther typed in input.
+void print_debug_matrix(char **m){
+	for(int i=0;i<N;i++)
+	{
+		for(int k=0;k<N;k++)
+		{
+			printf("%c",m[i][k]);
+		}
+		printf("\n");
+	}
+	printf("exit debug matrix..press a button\n");
+	getchar();
+}
 int getch_() {
         char buf = 0;
         struct termios old = {0};
@@ -40,20 +52,20 @@ int wall_placing1(char **m,player *p1,player *p2,barrier *b1, barrier *b2){
 	char answer;
 	int dir;
 	bool cl=false,flag=true;
-    //Directiom
+    //Direction
 	printf("\nType 'v' for vertical or 'h' for horizontal barrier\n");
-	scanf("%c",&answer);
+	scanf("%c",&(b1->direction));
 	fflush();
 
-	while(answer!='v'&&answer!='h'){
+	while((b1->direction)!='v'&&(b1->direction)!='h'){
         printf("\nInvalid barrier direction, please reinsert: ");
-      	scanf("%c",&answer);
+      	scanf("%c",&(b1->direction));
         fflush();
 	}
 
     b1->last++;
     //Starting position
-    if(answer=='v'){
+    if((b1->direction)=='v'){
         b1->x1[b1->last]=1;
         b1->y1[b1->last]=0;
         b1->x2[b1->last]=1;
@@ -249,10 +261,15 @@ void print_matrix(char **m,player *p1,player *p2, barrier *b1, barrier *b2){
                 continue;
             }
             //Work in progress
-            for(j=0;j<=b1->last;j++){
-                if(i==b1->y1[j]&&k==b1->x1[j]||i==b1->y2[j]&&k==b1->x2[j]){
-                    printf("/");
-                }
+            for(j=0;j<=b1->last;j++)
+            {
+                if((b1->direction)=='h')
+                {
+					if(i==b1->y1[j]&&k==b1->x1[j]||i==b1->y2[j]&&k==b1->x2[j])
+					{
+						printf("- ");
+					}
+				}
             }
             for(j=0;j<=b2->last;j++){
                 if(i==b2->y1[j]&&k==b2->x1[j]||i==b2->y2[j]&&k==b2->x2[j]){
@@ -302,13 +319,16 @@ int player1_move(char **m,player *p1, player *p2,barrier *b1, barrier *b2){
     printf("\nPlayer 1. It's your turn. Enter the move: ");
     scanf("%d",&move);
     fflush();
-    //Wall placing 5
-    if(move==5){
-		wall_placing1(m,p1,p2,b1,b2);
-		return winner;
-	}
 	//border boundaries player_one
     while(border_boundaries1(m,p1,p2,move)==false){
+        //Wall placing 5
+		if(move==5)
+		{
+			wall_placing1(m,p1,p2,b1,b2);
+			//print_debug_matrix(m);
+			return winner;
+			//Wall placing 5
+		}
         printf("\nInvalid movement, reinsert: ");
         scanf("%d",&move);
         fflush();
@@ -708,3 +728,4 @@ bool face_to_face2(player *p1, player *p2,int move){
     //No face to face
 	return false;
 }
+

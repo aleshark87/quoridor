@@ -23,6 +23,7 @@ struct barrier{
     int y1[10];
     int x2[10];
     int y2[10];
+    char direction;
     int last;
     int num;
 };
