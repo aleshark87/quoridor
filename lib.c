@@ -91,16 +91,24 @@ void print_matrix(char **m,player *p1,player *p2, barrier *b1, barrier *b2){
             {
                 if((b1->direction[j])=='h')
                 {
-					if(i==b1->y1[j]&&k==b1->x1[j]||i==b1->y2[j]&&k==b1->x2[j])
+					if(((i==b1->x1[j])&&(k==b1->y1[j]))||((i==b1->x2[j])&&(k==b1->y2[j]))||
+						((i==b1->x3[j])&&(k==b1->y3[j]))||((i==b1->x4[j])&&(k==b1->y4[j])))
 					{
-						printf("- ");
+						printf(",");
 					}
 				}
+				if((b1->direction[j])=='v')
+                {
+					if(((i==b1->x1[j])&&(k==b1->y1[j]))||((i==b1->x2[j])&&(k==b1->y2[j]))||
+						((i==b1->x3[j])&&(k==b1->y3[j]))||((i==b1->x4[j])&&(k==b1->y4[j])))
+					{
+						printf("'");
+					}
+				}
+				
             }
             for(j=0;j<=b2->last;j++){
-                if(i==b2->y1[j]&&k==b2->x1[j]||i==b2->y2[j]&&k==b2->x2[j]){
-                    printf("/");
-                }
+                //barrier 2
             }
             if(m[i][k]=='2'){
                 printf("  ");

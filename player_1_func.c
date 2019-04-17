@@ -88,9 +88,6 @@ int wall_placing1(char **m,player *p1,player *p2,barrier *b1, barrier *b2){
 	printf("\nType 'v' for vertical or 'h' for horizontal barrier\n");
 	scanf("%c",&(b1->direction[b1->last]));
 	fflush();
-
-	
-
 	while((b1->direction[b1->last])!='v'&&(b1->direction[b1->last])!='h'){
         printf("\nInvalid barrier direction, please reinsert: ");
       	scanf("%c",&(b1->direction[b1->last]));
@@ -99,15 +96,23 @@ int wall_placing1(char **m,player *p1,player *p2,barrier *b1, barrier *b2){
 
     //Starting position
     if((b1->direction[b1->last])=='v'){
-        b1->x1[b1->last]=1;
-        b1->y1[b1->last]=0;
-        b1->x2[b1->last]=1;
-        b1->y2[b1->last]=1;
-    }else{
         b1->x1[b1->last]=0;
         b1->y1[b1->last]=1;
         b1->x2[b1->last]=1;
         b1->y2[b1->last]=1;
+        b1->x3[b1->last]=2;
+        b1->y3[b1->last]=1;
+        b1->x4[b1->last]=3;
+        b1->y4[b1->last]=1;
+    }else{
+        b1->x1[b1->last]=1;
+        b1->y1[b1->last]=0;
+        b1->x2[b1->last]=1;
+        b1->y2[b1->last]=1;
+        b1->x3[b1->last]=1;
+        b1->y3[b1->last]=2;
+        b1->x4[b1->last]=1;
+        b1->y4[b1->last]=3;
     }
 
     printf("\nPrint arrows to move the barrier and once you've chosed the position, enter backspace\n");
@@ -122,7 +127,7 @@ int wall_placing1(char **m,player *p1,player *p2,barrier *b1, barrier *b2){
 
             if(dir!=-1&&dir!=0){
                 //Barrier border boundaries
-                if(dir=barrier1_border_boundaries(m,b1,b2,dir,b1->direction[b1->last])!=0){
+                if(dir=barrier1_border_boundaries(m,b1,dir,b1->direction[b1->last])!=0){
                     flag=true;
                 } else{
                     flag=false;
@@ -147,7 +152,8 @@ int wall_placing1(char **m,player *p1,player *p2,barrier *b1, barrier *b2){
     }
     m[b1->y1[b1->last]][b1->x1[b1->last]]='3';
     m[b1->y2[b1->last]][b1->x2[b1->last]]='3';
-
+	m[b1->y3[b1->last]][b1->x3[b1->last]]='3';
+	m[b1->y4[b1->last]][b1->x4[b1->last]]='3';
 }
 bool clash1(barrier *b1, barrier *b2){
     if(b1->last!=-1&&b2->last!=-1){
@@ -186,7 +192,7 @@ int player1_move(char **m,player *p1, player *p2,barrier *b1, barrier *b2){
 		if(move==5)
 		{
 			wall_placing1(m,p1,p2,b1,b2);
-			//print_debug_matrix(m);
+			print_debug_matrix(m);
 			return winner;
 			//Wall placing 5
 		}
@@ -301,16 +307,17 @@ bool face_to_face1(player *p1, player *p2, int move){
     //No face to face
 	return false;
 }
-int barrier1_border_boundaries(char **m, barrier *b1, barrier *b2, int move, char mode){
+int barrier1_border_boundaries(char **m, barrier *b1, int move, char mode){
 
     if(mode=='v'){
         switch(move){
+            //left
             case 1:
-                //It is enought to control if the x cooridinate of the first barrier cell is <0 if we substract -2
+                //It is enough to control if the x coordinate of the first barrier cell is <0 if we substract -2
                 if(b1->x1[b1->last]-2<0){
                     return 0;
                 }
-                //Else, decrease the cooridinates because the barrier is moving left
+                //Else, decrease the coordinates because the barrier is moving left
                 b1->x1[b1->last]-=2;
                 b1->x2[b1->last]-=2;
                 //Left movement completed with success
@@ -323,6 +330,8 @@ int barrier1_border_boundaries(char **m, barrier *b1, barrier *b2, int move, cha
                 //Else
                 b1->y1[b1->last]-=1;
                 b1->y2[b1->last]-=1;
+                b1->y3[b1->last]-=1;
+                b1->y4[b1->last]-=1;
                 //Top movement completed with success
                 return 2;
             case 3:
@@ -333,16 +342,21 @@ int barrier1_border_boundaries(char **m, barrier *b1, barrier *b2, int move, cha
                 //Else
                 b1->y1[b1->last]+=1;
                 b1->y2[b1->last]+=1;
+                b1->y3[b1->last]+=1;
+                b1->y4[b1->last]+=1;
                 //Bottom movement completed with success
                 return 3;
+            //right
             case 4:
                 //It is enought to control if the x cooridinate of the first barrier cell is <0 if we substract -2
                 if(b1->x2[b1->last]+2>N-1){
                     return 0;
                 }
-                //Else, decrease the cooridinates because the barrier is moving left
+                //Else, increase the cooridinates because the barrier is moving right
                 b1->x1[b1->last]+=2;
                 b1->x2[b1->last]+=2;
+                b1->x3[b1->last]+=2;
+                b1->x4[b1->last]+=2;
                 //Left movement completed with success
                 return 4;
         }
@@ -356,6 +370,8 @@ int barrier1_border_boundaries(char **m, barrier *b1, barrier *b2, int move, cha
                 }
                 b1->x1[b1->last]-=1;
                 b1->x2[b1->last]-=1;
+                b1->x3[b1->last]-=1;
+                b1->x4[b1->last]-=1;
                 return 1;
             case 2:
                 //If the barrier overcome the boundaries on the top, both y1 and y2 go under 0, then is enought to control 1 of the two
@@ -364,6 +380,8 @@ int barrier1_border_boundaries(char **m, barrier *b1, barrier *b2, int move, cha
                 }
                 b1->y1[b1->last]-=2;
                 b1->y2[b1->last]-=2;
+                b1->y3[b1->last]-=2;
+                b1->y4[b1->last]-=2;
                 return 2;
             case 3:
                 if(b1->y1[b1->last]+2>N-1){
@@ -371,6 +389,8 @@ int barrier1_border_boundaries(char **m, barrier *b1, barrier *b2, int move, cha
                 }
                 b1->y1[b1->last]+=2;
                 b1->y2[b1->last]+=2;
+                b1->y3[b1->last]+=2;
+                b1->y4[b1->last]+=2;
                 return 3;
             case 4:
                 if(b1->x2[b1->last]+1>N-1){
@@ -378,6 +398,8 @@ int barrier1_border_boundaries(char **m, barrier *b1, barrier *b2, int move, cha
                 }
                 b1->x1[b1->last]+=1;
                 b1->x2[b1->last]+=1;
+                b1->x3[b1->last]+=1;
+                b1->x4[b1->last]+=1;
                 return 4;
         }
     }

@@ -19,10 +19,14 @@ struct player{
     int y;
 };
 struct barrier{
-    int x1[10];
-    int y1[10];
-    int x2[10];
-    int y2[10];
+    char x1[10];
+    char y1[10];
+    char x2[10];
+    char y2[10];
+    char x3[10];
+    char y3[10];
+    char x4[10];
+    char y4[10];
     char direction[10];
     int last;
     int num;
@@ -40,7 +44,8 @@ bool face_to_face1(player *plr1, player *plr2,int move);
 bool face_to_face2(player *plr1, player *plr2,int move);
 int getch_(void);
 int wall_placing1(char **m,player *plr1,player *plr2,barrier *b1, barrier *b2);
-int barrier1_border_boundaries(char **m, barrier *b1, barrier *b2, int move, char mode);
+int barrier1_border_boundaries(char **m, barrier *b1,int move, char mode);
 bool clash1(barrier *b1,barrier *b2);
 int finish_line(player *p1,player *p2);
+void print_debug_matrix(char **m);
 #endif // LIB_H_INCLUDED
