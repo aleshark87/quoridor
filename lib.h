@@ -23,7 +23,7 @@ struct barrier{
     int y1[10];
     int x2[10];
     int y2[10];
-    char direction;
+    char direction[10];
     int last;
     int num;
 };
@@ -40,6 +40,7 @@ bool face_to_face1(player *plr1, player *plr2,int move);
 bool face_to_face2(player *plr1, player *plr2,int move);
 int getch_(void);
 int wall_placing1(char **m,player *plr1,player *plr2,barrier *b1, barrier *b2);
-int barrier_border_boundaries(char **m, barrier *b1, barrier *b2, int move, char mode);
+int barrier1_border_boundaries(char **m, barrier *b1, barrier *b2, int move, char mode);
 bool clash1(barrier *b1,barrier *b2);
+int finish_line(player *p1,player *p2);
 #endif // LIB_H_INCLUDED
